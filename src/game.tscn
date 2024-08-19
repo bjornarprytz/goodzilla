@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://vuse4byfrc4k"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_ikkha"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fc8qd"]
+distance = -652.0
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_ikkha")
+
+[node name="Floor" type="StaticBody2D" parent="."]
+
+[node name="Bounds" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("WorldBoundaryShape2D_fc8qd")
