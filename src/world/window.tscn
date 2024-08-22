@@ -13,8 +13,8 @@ theme_override_constants/margin_bottom = 2
 script = ExtResource("1_tb3jo")
 
 [node name="Alertness" type="TextureProgressBar" parent="."]
+modulate = Color(0.721569, 0.25098, 0, 1)
 layout_mode = 2
-min_value = 100.0
 value = 100.0
 fill_mode = 3
 texture_progress = ExtResource("2_nnyr1")

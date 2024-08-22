@@ -6,14 +6,17 @@
 size = Vector2(40, 40)
 
 [node name="Skyscraper" type="RigidBody2D"]
+contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_rxrpg")
 
 [node name="Shape" type="ColorRect" parent="."]
 offset_top = -40.0
 offset_right = 40.0
-color = Color(0, 0, 0, 1)
+color = Color(0.611765, 0.611765, 0.611765, 1)
 
 [node name="Collision" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(20, -20)
 shape = SubResource("RectangleShape2D_g5ajj")
 

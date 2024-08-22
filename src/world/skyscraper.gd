@@ -1,7 +1,7 @@
 class_name Skyscraper
 extends RigidBody2D
 @onready var container: MarginContainer = $Container
-@onready var windows: FlowContainer = %Windows
+@onready var windowsContainer: FlowContainer = %Windows
 
 # In windows
 var width: int
@@ -10,6 +10,11 @@ var height: int
 
 const windowSize = 8
 const faceMargins = 4
+
+var windows: Array[BuildingWindow] = []
+
+var alertness: float = 0.0
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -32,9 +37,18 @@ func _ready() -> void:
 	
 	for r in nWindows:
 		var w = Create.BuildingWindow()
-		windows.add_child(w)
+		windowsContainer.add_child(w)
+		windows.push_back(w)
+		w.turnOff()
 	
+	windows.shuffle()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if get_contact_count() > 0:
+		alertness += delta
+	if alertness > 0:
+		var n = min((windows.size() * (alertness / 50.0)), windows.size()-1)
+		
+		for i in range(n):
+			windows[i].turnOn()

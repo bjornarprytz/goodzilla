@@ -4,7 +4,7 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for x in range(10):
-		await get_tree().create_timer(1).timeout
+		await get_tree().create_timer(.05).timeout
 		
 		var s = Create.Skyscraper()
 		
