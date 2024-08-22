@@ -2,19 +2,62 @@
 
 game on itch.io: [link](https://thewarlock.itch.io/goodzilla)
 
+Based on two themes:
+
+1. You are the monster
+2. Keep them alive
+
 Stipulation: 3 color palette
+
+- Current Palette
+- Gray:     9c9c9c
+- Rust:     b84000
+- Emerald:  40c080
 
 ## TODO
 
-- Setup itch.io page for goodzilla [link](https://itch.io/game/new)
-  - Set Kind to HTML
-  - Set viewport dimensions (normal: 1280x720)
-  - Check SharedArrayBuffer
-  - Hit the Save button
-- Get Butler API key from [itch.io](https://itch.io/user/settings/api-keys)
-- Publish github repo
-- Add key to GitHub secrets as BUTLER_API_KEY [link](https://github.com/bjornarprytz/goodzilla/settings/secrets/actions)
+- GameObjects
+  - Character
+    - Sprites + animation?
+    - States:
+      - H:Horizontal
+      - VL:VerticalLeft
+      - VR:VerticalRight
+    - Controls
+      - H: Left/Right: A/D
+      - VL: Up/Down: DW/AS
+      - VR: Up/Down: AW/DS
+      - Jumping: Click (m1 or m2) + Hold:
+        - Build power towards cursor
+        - Release: Jump towards direction
+  - Building (Skyscraper)
+    - When touched by player
+      - Build up alert
+    - Otherwise
+      - Decrease alert
+    - When alert reaches 100% -> **Game over**
+    - Alert is communicated with lights turning on in the windows
+  - Egg
+    - Sprite with a little animation (wiggling side to side every now and then)
+    - Picked up by player
+  - Ground
+    - Sewer (For escaping with the eggs)
+  - Background
+- UI
+  - Jumping
+    - Arrow for direction and strength meter
+- Sound
+  - Music?
+  - Effects?
+
 - Push release with `./push_release.sh`
+
+## Nice to have
+
+- Parallax background
+- Time limit: Dawn approaches
+  - Base alert increases over time
+- Cool Lighting (would it break the palette stipulation?)
 
 ### Extra
 

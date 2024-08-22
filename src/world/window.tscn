@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://5ijiwqm7casw"]
+
+[ext_resource type="Script" path="res://world/window.gd" id="1_tb3jo"]
+[ext_resource type="Texture2D" uid="uid://e433s36xu1gf" path="res://assets/white-4x4.png" id="2_nnyr1"]
+
+[node name="Window" type="MarginContainer"]
+offset_right = 6.0
+offset_bottom = 6.0
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+script = ExtResource("1_tb3jo")
+
+[node name="Alertness" type="TextureProgressBar" parent="."]
+layout_mode = 2
+min_value = 100.0
+value = 100.0
+fill_mode = 3
+texture_progress = ExtResource("2_nnyr1")
