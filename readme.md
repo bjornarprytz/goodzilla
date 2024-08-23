@@ -18,18 +18,8 @@ Stipulation: 3 color palette
 
 - GameObjects
   - Character
-    - Sprites + animation?
-    - States:
-      - H:Horizontal
-      - VL:VerticalLeft
-      - VR:VerticalRight
-    - Controls
-      - H: Left/Right: A/D
-      - VL: Up/Down: DW/AS
-      - VR: Up/Down: AW/DS
-      - Jumping: Click (m1 or m2) + Hold:
-        - Build power towards cursor
-        - Release: Jump towards direction
+    - Keep tweaking movement
+    - Rotate collisionShape along with sprite
   - Building (Skyscraper)
     - When touched by player
       - Build up alert
@@ -49,6 +39,8 @@ Stipulation: 3 color palette
 - Sound
   - Music?
   - Effects?
+- Attribution
+  - Character sprites: <https://omniclause.itch.io/lizard-character-sprites>
 
 - Push release with `./push_release.sh`
 

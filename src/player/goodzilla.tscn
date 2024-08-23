@@ -1,0 +1,146 @@
+[gd_scene load_steps=22 format=3 uid="uid://blewnknkud5e2"]
+
+[ext_resource type="Script" path="res://player/goodzilla.gd" id="1_lk0w1"]
+[ext_resource type="Texture2D" uid="uid://cvi5anpwyh2ub" path="res://assets/Proto-Idle.png" id="2_824dx"]
+[ext_resource type="Texture2D" uid="uid://4iymb0wdox7i" path="res://assets/Proto-jump.png" id="3_3hdhv"]
+[ext_resource type="Texture2D" uid="uid://b0rtea0w0sn7u" path="res://assets/Proto-run.png" id="4_yskql"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3aet3"]
+size = Vector2(16, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l4on6"]
+atlas = ExtResource("2_824dx")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3mqa"]
+atlas = ExtResource("2_824dx")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3cb5"]
+atlas = ExtResource("2_824dx")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83lwv"]
+atlas = ExtResource("2_824dx")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpqjk"]
+atlas = ExtResource("3_3hdhv")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ccw4"]
+atlas = ExtResource("3_3hdhv")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tis1k"]
+atlas = ExtResource("3_3hdhv")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vcckl"]
+atlas = ExtResource("4_yskql")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cdcry"]
+atlas = ExtResource("4_yskql")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5pbuq"]
+atlas = ExtResource("4_yskql")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_amjm3"]
+atlas = ExtResource("4_yskql")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_csquu"]
+atlas = ExtResource("4_yskql")
+region = Rect2(32, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1nyca"]
+atlas = ExtResource("4_yskql")
+region = Rect2(40, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgbky"]
+atlas = ExtResource("4_yskql")
+region = Rect2(48, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e5sfd"]
+atlas = ExtResource("4_yskql")
+region = Rect2(56, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wycfp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l4on6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3mqa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3cb5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_83lwv")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hpqjk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ccw4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tis1k")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vcckl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cdcry")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5pbuq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_amjm3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_csquu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1nyca")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pgbky")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e5sfd")
+}],
+"loop": true,
+"name": &"run",
+"speed": 4.0
+}]
+
+[node name="Goodzilla" type="CharacterBody2D"]
+script = ExtResource("1_lk0w1")
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_3aet3")
+
+[node name="Animation" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_wycfp")
+animation = &"idle"
+autoplay = "idle"

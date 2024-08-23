@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://vuse4byfrc4k"]
+[gd_scene load_steps=4 format=3 uid="uid://vuse4byfrc4k"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_ikkha"]
+[ext_resource type="PackedScene" uid="uid://blewnknkud5e2" path="res://player/goodzilla.tscn" id="2_h2c03"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fc8qd"]
 distance = -652.0
@@ -12,3 +13,6 @@ script = ExtResource("1_ikkha")
 
 [node name="Bounds" type="CollisionShape2D" parent="Floor"]
 shape = SubResource("WorldBoundaryShape2D_fc8qd")
+
+[node name="Goodzilla" parent="." instance=ExtResource("2_h2c03")]
+position = Vector2(666, 222)
