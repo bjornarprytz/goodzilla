@@ -17,23 +17,26 @@ Stipulation: 3 color palette
 ## TODO
 
 - Initialize
-  - Spawn eggs on top of some skyscrapers
+  - Skyscrapers repel/attract each other
+    - Check if this bugs out the velocity check into an infinite loop
 - GameObjects
   - Character
     - Keep tweaking movement
   - Building (Skyscraper)
     - When alert reaches 100% -> **Game over**
     - Tweak alertness buildup
-  - Egg
-    - Sprite with a little animation (wiggling side to side every now and then)
-    - Picked up by player
   - Background
+- GameLoop
+  - Game Win (all eggs?)
+  - Game Loss (alert building)
 - UI
   - Jumping
     - Arrow for direction and strength meter
+  - Apply palette
 - Sound
-  - Music?
-  - Effects?
+  - Music
+  - Effects
+    - pickup egg
 - Attribution
   - Character sprites: <https://omniclause.itch.io/lizard-character-sprites>
 

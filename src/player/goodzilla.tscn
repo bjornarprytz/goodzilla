@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://blewnknkud5e2"]
+[gd_scene load_steps=23 format=3 uid="uid://blewnknkud5e2"]
 
 [ext_resource type="Script" path="res://player/goodzilla.gd" id="1_lk0w1"]
 [ext_resource type="Texture2D" uid="uid://cvi5anpwyh2ub" path="res://assets/Proto-Idle.png" id="2_824dx"]
@@ -131,6 +131,10 @@ animations = [{
 "speed": 4.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b5rds"]
+radius = 15.0
+height = 36.0
+
 [node name="Goodzilla" type="CharacterBody2D"]
 script = ExtResource("1_lk0w1")
 
@@ -144,3 +148,10 @@ scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_wycfp")
 animation = &"idle"
 autoplay = "idle"
+
+[node name="PickupZone" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="PickupZone"]
+shape = SubResource("CapsuleShape2D_b5rds")
+
+[connection signal="body_entered" from="PickupZone" to="." method="_on_pickup_zone_body_entered"]

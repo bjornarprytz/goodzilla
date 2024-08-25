@@ -3,6 +3,7 @@ extends Node2D
 
 var skyscraper_spawner = preload("res://world/skyscraper.tscn")
 var window_spawner = preload("res://world/window.tscn")
+var egg_spawner = preload("res://world/egg.tscn")
 
 # Add factory methods for common scenes here. Access through the Create singleton
 
@@ -20,3 +21,8 @@ func BuildingWindow() -> BuildingWindow:
 	var window = window_spawner.instantiate() as BuildingWindow
 	
 	return window
+
+func Egg() -> Egg:
+	var egg = egg_spawner.instantiate() as Egg
+	
+	return egg

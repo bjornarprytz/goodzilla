@@ -126,3 +126,9 @@ func update_sprite_direction_and_rotation() -> void:
 		# Reset the rotation when not climbing
 		animation.rotation_degrees = 0
 		shape.rotation = 0
+
+
+func _on_pickup_zone_body_entered(body: Node2D) -> void:
+	if body is Egg:
+		Events.pickup_egg.emit()
+		body.queue_free()
