@@ -16,6 +16,11 @@ Stipulation: 3 color palette
 
 ## TODO
 
+- Initialize
+  - Bouncy buildings
+  - Tween bouncyness and "lightness" down so they're more rigid
+  - Spawn eggs on top of some of them
+  - Walls around the edges
 - GameObjects
   - Character
     - Keep tweaking movement

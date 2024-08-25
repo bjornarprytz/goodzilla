@@ -16,3 +16,5 @@ shape = SubResource("WorldBoundaryShape2D_fc8qd")
 
 [node name="Goodzilla" parent="." instance=ExtResource("2_h2c03")]
 position = Vector2(666, 222)
+
+[node name="Skyscrapers" type="Node" parent="."]

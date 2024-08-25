@@ -1,5 +1,6 @@
 extends Node2D
 
+@onready var skyscrapers: Node = $Skyscrapers
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -8,10 +9,10 @@ func _ready() -> void:
 		
 		var s = Create.Skyscraper()
 		
-		add_child(s)
-		s.position = Vector2(randf_range(10.0, 500.0), randf_range(0.0, 400.0))
+		skyscrapers.add_child(s)
+		s.position = Vector2(randf_range(10.0, 1000.0), randf_range(0.0, 400.0))
 
+	await get_tree().create_timer(5.0).timeout
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	for s in skyscrapers.get_children():
+		s.settle()

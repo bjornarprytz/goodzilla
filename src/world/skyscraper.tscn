@@ -1,13 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://4bfuqdmsdfnx"]
+[gd_scene load_steps=4 format=3 uid="uid://4bfuqdmsdfnx"]
 
 [ext_resource type="Script" path="res://world/skyscraper.gd" id="1_rxrpg"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mfp18"]
+bounce = 0.81
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g5ajj"]
 size = Vector2(40, 40)
 
 [node name="Skyscraper" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_mfp18")
 contact_monitor = true
-max_contacts_reported = 1
+max_contacts_reported = 5
 script = ExtResource("1_rxrpg")
 
 [node name="Shape" type="ColorRect" parent="."]
@@ -33,3 +37,6 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

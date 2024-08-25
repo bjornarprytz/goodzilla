@@ -1,6 +1,8 @@
+class_name Goodzilla
 extends CharacterBody2D
 
 @onready var animation: AnimatedSprite2D = $Animation
+@onready var shape: CollisionShape2D = $Shape
 
 # Speed settings
 var speed: float = 200.0
@@ -66,6 +68,10 @@ func move_character(delta: float) -> void:
 		var nCollisions = get_slide_collision_count()
 		for i in range(nCollisions):
 			var collision_info = get_slide_collision(i)
+
+			var o = collision_info.get_collider()
+			if o is not Skyscraper:
+				continue
 			# Check for wall collisions using angle
 			if collision_info:
 				var collision_angle = collision_info.get_angle(Vector2.UP)
@@ -90,7 +96,10 @@ func update_sprite_direction_and_rotation() -> void:
 	# Rotate the sprite if climbing
 	if is_climbing:
 		# Calculate the rotation in degrees based on the wall's normal
-		animation.rotation_degrees = -(wall_normal.angle_to(Vector2.UP) * 180 / PI)
+		var r = -(wall_normal.angle_to(Vector2.UP) * 180 / PI)
+		animation.rotation_degrees = r
+		shape.rotation = r
 	else:
 		# Reset the rotation when not climbing
 		animation.rotation_degrees = 0
+		shape.rotation = 0

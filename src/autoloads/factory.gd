@@ -8,9 +8,10 @@ var window_spawner = preload("res://world/window.tscn")
 
 func Skyscraper() -> Skyscraper:
 	var skyscraper = skyscraper_spawner.instantiate() as Skyscraper
-		
-	skyscraper.width = randi_range(4, 6)
-	skyscraper.height = randi_range(9, 12)
+	
+	
+	skyscraper.width = randi_range(4, 8)
+	skyscraper.height = randi_range(skyscraper.width + 1, 30)
 	
 	
 	return skyscraper

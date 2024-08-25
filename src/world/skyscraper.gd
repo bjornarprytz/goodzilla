@@ -3,6 +3,8 @@ extends RigidBody2D
 @onready var container: MarginContainer = $Container
 @onready var windowsContainer: FlowContainer = %Windows
 
+var rotation_speed = 4
+
 # In windows
 var width: int
 # In floors
@@ -15,12 +17,17 @@ var windows: Array[BuildingWindow] = []
 
 var alertness: float = 0.0
 
+var alertness_rate: float = 5.0
+var calm_rate: float = 2.0
+
+var disturbed: bool = false
+var settled = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var size = (Vector2(width, height) * windowSize) + (Vector2.ONE * faceMargins * 2)
 	
-	print (size)
+	print(size)
 	
 	$Collision.shape = RectangleShape2D.new()
 	$Collision.shape.size = size
@@ -45,10 +52,36 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if get_contact_count() > 0:
-		alertness += delta
-	if alertness > 0:
-		var n = min((windows.size() * (alertness / 50.0)), windows.size()-1)
-		
-		for i in range(n):
+	if disturbed:
+		alertness += delta * alertness_rate
+	else:
+		alertness = max(alertness - delta * calm_rate, 0)
+
+	var threshold: int = int(alertness)
+
+	for i in range(windows.size()):
+		if i < threshold:
 			windows[i].turnOn()
+		else:
+			windows[i].turnOff()
+
+func _physics_process(delta: float) -> void:
+	# Rotate towards standing up
+	if not settled:
+		if rotation < 0:
+			angular_velocity = delta * rotation_speed
+		elif rotation > 0:
+			angular_velocity = -delta * rotation_speed
+	
+	var d = false
+	for b in get_colliding_bodies():
+		if b is Goodzilla:
+			d = true
+	
+	disturbed = d
+
+func settle() -> void:
+	physics_material_override.bounce = 0
+	mass = 10
+	freeze_mode = FREEZE_MODE_STATIC
+	settled = true
