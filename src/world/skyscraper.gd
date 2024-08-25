@@ -25,63 +25,57 @@ var settled = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var size = (Vector2(width, height) * windowSize) + (Vector2.ONE * faceMargins * 2)
-	
-	print(size)
-	
-	$Collision.shape = RectangleShape2D.new()
-	$Collision.shape.size = size
-	$Collision.position = (size * Vector2(.5, -.5))
-	
-	$Shape.size = size
-	$Shape.position.y = -size.y
-	
-	container.size = size
-	container.position.y = -size.y
-	
-	
-	var nWindows: int = width * (height)
-	
-	for r in nWindows:
-		var w = Create.BuildingWindow()
-		windowsContainer.add_child(w)
-		windows.push_back(w)
-		w.turnOff()
-	
-	windows.shuffle()
+    var size = (Vector2(width, height) * windowSize) + (Vector2.ONE * faceMargins * 2)
+    
+    print(size)
+    
+    $Collision.shape = RectangleShape2D.new()
+    $Collision.shape.size = size
+    $Collision.position = (size * Vector2(.5, -.5))
+    
+    $Shape.size = size
+    $Shape.position.y = -size.y
+    
+    container.size = size
+    container.position.y = -size.y
+    
+    
+    var nWindows: int = width * (height)
+    
+    for r in nWindows:
+        var w = Create.BuildingWindow()
+        windowsContainer.add_child(w)
+        windows.push_back(w)
+        w.turnOff()
+    
+    windows.shuffle()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if disturbed:
-		alertness += delta * alertness_rate
-	else:
-		alertness = max(alertness - delta * calm_rate, 0)
+    if disturbed:
+        alertness += delta * alertness_rate
+    else:
+        alertness = max(alertness - delta * calm_rate, 0)
 
-	var threshold: int = int(alertness)
+    var threshold: int = int(alertness)
 
-	for i in range(windows.size()):
-		if i < threshold:
-			windows[i].turnOn()
-		else:
-			windows[i].turnOff()
+    for i in range(windows.size()):
+        if i < threshold:
+            windows[i].turnOn()
+        else:
+            windows[i].turnOff()
 
 func _physics_process(delta: float) -> void:
-	# Rotate towards standing up
-	if not settled:
-		if rotation < 0:
-			angular_velocity = delta * rotation_speed
-		elif rotation > 0:
-			angular_velocity = -delta * rotation_speed
-	
-	var d = false
-	for b in get_colliding_bodies():
-		if b is Goodzilla:
-			d = true
-	
-	disturbed = d
+    # Rotate towards standing up
+    if not settled:
+        if rotation < 0:
+            angular_velocity = delta * rotation_speed
+        elif rotation > 0:
+            angular_velocity = -delta * rotation_speed
 
 func settle() -> void:
-	physics_material_override.bounce = 0
-	mass = 10
-	freeze_mode = FREEZE_MODE_STATIC
-	settled = true
+    physics_material_override.bounce = 0
+    
+    freeze = true
+    #process_mode = PROCESS_MODE_ALWAYS
+    settled = true
