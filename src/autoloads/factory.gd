@@ -10,7 +10,7 @@ func Skyscraper() -> Skyscraper:
 	var skyscraper = skyscraper_spawner.instantiate() as Skyscraper
 	
 	
-	skyscraper.width = randi_range(4, 8)
+	skyscraper.width = randi_range(6, 10)
 	skyscraper.height = randi_range(skyscraper.width + 1, 30)
 	
 	

@@ -17,26 +17,16 @@ Stipulation: 3 color palette
 ## TODO
 
 - Initialize
-  - Bouncy buildings
-  - Tween bouncyness and "lightness" down so they're more rigid
-  - Spawn eggs on top of some of them
-  - Walls around the edges
+  - Spawn eggs on top of some skyscrapers
 - GameObjects
   - Character
     - Keep tweaking movement
-    - Rotate collisionShape along with sprite
   - Building (Skyscraper)
-    - When touched by player
-      - Build up alert
-    - Otherwise
-      - Decrease alert
     - When alert reaches 100% -> **Game over**
-    - Alert is communicated with lights turning on in the windows
+    - Tweak alertness buildup
   - Egg
     - Sprite with a little animation (wiggling side to side every now and then)
     - Picked up by player
-  - Ground
-    - Sewer (For escaping with the eggs)
   - Background
 - UI
   - Jumping
@@ -54,6 +44,8 @@ Stipulation: 3 color palette
 - Parallax background
 - Time limit: Dawn approaches
   - Base alert increases over time
+- Ground
+  - Sewer (For escaping with the eggs)
 - Cool Lighting (would it break the palette stipulation?)
 
 ### Extra
