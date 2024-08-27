@@ -6,3 +6,4 @@ extends Node2D
 
 
 signal pickup_egg
+signal game_over(win: bool)

@@ -13,7 +13,6 @@ var wall_climb_speed: float = 100.0
 var is_climbing: bool:
 	get:
 		return currently_climbing != null
-	
 
 var is_charging_jump: bool = false
 var wall_normal: Vector2 = Vector2.ZERO

@@ -16,9 +16,6 @@ Stipulation: 3 color palette
 
 ## TODO
 
-- Initialize
-  - Skyscrapers repel/attract each other
-    - Check if this bugs out the velocity check into an infinite loop
 - GameObjects
   - Character
     - Keep tweaking movement

@@ -17,8 +17,8 @@ var windows: Array[BuildingWindow] = []
 
 var alertness: float = 0.0
 
-var alertness_rate: float = 5.0
-var calm_rate: float = 2.0
+var alertness_rate: float = 10.0
+var calm_rate: float = 0.0
 
 var disturbed: bool = false
 var settled = false
@@ -62,6 +62,9 @@ func _process(delta: float) -> void:
 			windows[i].turnOn()
 		else:
 			windows[i].turnOff()
+	
+	if threshold > windows.size():
+		Events.game_over.emit(false)
 
 func _physics_process(delta: float) -> void:
 	# Rotate towards standing up
