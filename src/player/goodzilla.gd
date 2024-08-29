@@ -36,9 +36,9 @@ func _physics_process(delta: float) -> void:
 
 func handle_input() -> void:
 	# Horizontal movement
-	if Input.is_action_pressed("ui_right"):
+	if Input.is_action_pressed("right"):
 		velocity.x = speed
-	elif Input.is_action_pressed("ui_left"):
+	elif Input.is_action_pressed("left"):
 		velocity.x = -speed
 	elif is_on_floor():
 		velocity.x = 0
@@ -46,9 +46,9 @@ func handle_input() -> void:
 	# Wall climbing
 	if is_climbing:
 		velocity.y = 0
-		if Input.is_action_pressed("ui_up"):
+		if Input.is_action_pressed("up"):
 			velocity.y = -wall_climb_speed
-		elif Input.is_action_pressed("ui_down"):
+		elif Input.is_action_pressed("down"):
 			velocity.y = wall_climb_speed
 
 	# Jumping

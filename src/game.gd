@@ -8,8 +8,12 @@ extends Node2D
 @onready var repellants: Node = $Repellants
 @onready var game_over_message: PanelContainer = $UI/GameOver
 @onready var game_over_text: RichTextLabel = $UI/GameOver/MarginContainer/GameOverText
+@onready var camera: Camera2D = $Camera2D
+@onready var leftBounds: Node2D = $Left/Mark
+@onready var rightBounds: Node2D = $Right/Mark
 
-const EGG_COUNT = 6
+const EGG_COUNT = 20
+const SKYSCRAPER_COUNT = 20
 var eggs: int = 0
 
 # Called when the node enters the scene tree for the first time.
@@ -17,22 +21,22 @@ func _ready() -> void:
 	Events.pickup_egg.connect(on_pickup_egg)
 	Events.game_over.connect(on_game_over)
 
-	for x in range(3):
+	for x in range(5):
 		var r = Create.Repellant()
 		
-		r.position = Vector2(randf_range(10.0, 1000.0), randf_range(500.0, 600.0))
+		r.position = Vector2(randf_range(leftBounds.position.x, rightBounds.position.x), randf_range(500.0, 600.0))
 		repellants.add_child(r)
 	
 	goodzilla.process_mode = Node.PROCESS_MODE_DISABLED
 	goodzilla.hide()
 	Engine.time_scale = 2.0
-	for x in range(12):
+	for x in range(SKYSCRAPER_COUNT):
 		await get_tree().create_timer(.05).timeout
 		
 		var s = Create.Skyscraper()
 		
 		skyscrapers.add_child(s)
-		s.position = Vector2(randf_range(10.0, 1000.0), randf_range(0.0, 400.0))
+		s.position = Vector2(randf_range(leftBounds.position.x, rightBounds.position.x), randf_range(0.0, 400.0))
 		s.settle()
 		
 		
@@ -47,7 +51,7 @@ func _ready() -> void:
 		await get_tree().create_timer(.1).timeout
 		var e = Create.Egg()
 		
-		e.position = Vector2(randf_range(10.0, 1000.0), randf_range(0.0, 100.0))
+		e.position = Vector2(randf_range(leftBounds.position.x, rightBounds.position.x), 0.0)
 		eggcontainer.add_child(e)
 
 	# Decrease clock speed
@@ -55,6 +59,8 @@ func _ready() -> void:
 	goodzilla.show()
 	goodzilla.process_mode = Node.PROCESS_MODE_INHERIT
 
+func _process(delta: float) -> void:
+	camera.position.x = goodzilla.position.x
 
 func on_pickup_egg():
 	eggs += 1

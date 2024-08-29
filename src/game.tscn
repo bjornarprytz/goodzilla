@@ -1,37 +1,71 @@
-[gd_scene load_steps=7 format=3 uid="uid://vuse4byfrc4k"]
+[gd_scene load_steps=10 format=3 uid="uid://vuse4byfrc4k"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_ikkha"]
+[ext_resource type="Shader" path="res://background_mist.gdshader" id="2_8y77d"]
 [ext_resource type="PackedScene" uid="uid://blewnknkud5e2" path="res://player/goodzilla.tscn" id="2_h2c03"]
 [ext_resource type="Texture2D" uid="uid://c516wh6ttnlk1" path="res://assets/egg.png" id="3_0j7ul"]
+[ext_resource type="Texture2D" uid="uid://b7g7q6yoa8jwv" path="res://assets/city-background.png" id="4_mix17"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3vg3n"]
+shader = ExtResource("2_8y77d")
+shader_parameter/mist_height = 0.083
+shader_parameter/mist_softness = 1.0
+shader_parameter/mist_color = Color(0.611765, 0.611765, 0.611765, 1)
+shader_parameter/pixel_size = 180.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_m8ic3"]
 distance = -652.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rb4uc"]
 normal = Vector2(1, 0)
-distance = 22.0
+distance = -397.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fc8qd"]
 normal = Vector2(-1, 0)
-distance = -1256.0
+distance = -1556.0
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_ikkha")
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.2, 0.2)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+material = SubResource("ShaderMaterial_3vg3n")
+position = Vector2(621.132, 280.25)
+scale = Vector2(1.60231, 1.60231)
+texture = ExtResource("4_mix17")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(643, 360)
 
 [node name="Floor" type="StaticBody2D" parent="."]
 
 [node name="Bounds2" type="CollisionShape2D" parent="Floor"]
 shape = SubResource("WorldBoundaryShape2D_m8ic3")
 
+[node name="ColorRect" type="ColorRect" parent="Floor"]
+offset_left = -3559.0
+offset_top = 652.0
+offset_right = 4828.0
+offset_bottom = 736.0
+color = Color(0.611765, 0.611765, 0.611765, 1)
+
 [node name="Left" type="StaticBody2D" parent="."]
 
 [node name="Bounds" type="CollisionShape2D" parent="Left"]
 shape = SubResource("WorldBoundaryShape2D_rb4uc")
 
+[node name="Mark" type="Node2D" parent="Left"]
+position = Vector2(-396, 2)
+
 [node name="Right" type="StaticBody2D" parent="."]
 
 [node name="Bounds" type="CollisionShape2D" parent="Right"]
 shape = SubResource("WorldBoundaryShape2D_fc8qd")
+
+[node name="Mark" type="Node2D" parent="Right"]
+position = Vector2(1558, 2)
 
 [node name="Goodzilla" parent="." instance=ExtResource("2_h2c03")]
 position = Vector2(666, 222)
